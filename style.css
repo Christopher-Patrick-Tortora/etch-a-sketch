@@ -1,0 +1,40 @@
+header{
+    border-style: solid;
+    border-color: black;
+    width: 960px;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+    font-family: "Brush Script MT", cursive;
+    font-size: 100px;  
+}
+
+body{
+    width: 960px;
+    margin: auto; 
+}
+p{
+    margin-top: -20px;
+    font-size: 20px;
+}
+
+.mySlider{
+    width: 960px;
+}
+
+
+.container{
+    border-style: solid;
+    border-color: black;
+    width: 960px;
+    height: 720px;
+}
+
+.box{
+    float: left;
+    background-color: rgb(255, 255, 255);
+}
+
+.nextRowBox{
+    clear: both;; 
+}
