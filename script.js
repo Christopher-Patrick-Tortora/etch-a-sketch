@@ -3,15 +3,16 @@ const size = document.createElement('p');
 size.textContent = "16 x 16"
 header.appendChild(size);
 
-const container = document.querySelector("div");
+const container = document.getElementById("container");
 container.classList.add("container");
 
+var rangeInput = document.getElementById("rangeInput");
 
+createDivs(16);
 
+var divList;
 
-
-
-
+//functions
 function createDivs(divByDiv){
     const numDivs = divByDiv * divByDiv;
     const divSize = (( 1 / divByDiv) * 100);
@@ -20,6 +21,7 @@ function createDivs(divByDiv){
         const div = document.createElement("div");
     
         div.classList.add("box");
+        div.id = "box"
         
        
         div.style.width = divSize + "%";
@@ -32,45 +34,32 @@ function createDivs(divByDiv){
       
         container.appendChild(div);
     }
+
+    divList = document.querySelectorAll('#box');
+
+    divList.forEach((div) => {
+        div.addEventListener('mouseenter', (e) => {
+            console.log(div.style.backgroundColor);
+            if(div.style.backgroundColor === ""){
+            const r = Math.floor((Math.random() * 255) + 0);
+            const g = Math.floor((Math.random() * 255) + 0);
+            const b = Math.floor((Math.random() * 255) + 0);
+            div.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+            }
+        })
+    }) 
+
+
 }
-
-
-var rangeInput = document.getElementById("rangeInput");
-
-
-
-rangeInput.addEventListener('mouseup', function() {
-    shake();
-    //createDivs(rangeInput.value);
-    size.textContent = rangeInput.value + " x " + rangeInput.value;
-    console.log(rangeInput.value);
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-createDivs(16);
-
-const divList = document.querySelectorAll('div');
 
 function shake(){
-    divList.forEach((div) => {
-      div.style.backgroundColor = 'rgb(255, 255, 255)';
-    })
+ while(container.firstChild){
+     container.removeChild(container.firstChild);
+ }
 }
 
-
-divList.forEach((div) => {
+//listeners
+ /*divList.forEach((div) => {
     div.addEventListener('mouseenter', (e) => {
         console.log(div.style.backgroundColor);
         if(div.style.backgroundColor === ""){
@@ -78,6 +67,34 @@ divList.forEach((div) => {
         const g = Math.floor((Math.random() * 255) + 0);
         const b = Math.floor((Math.random() * 255) + 0);
         div.style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+        }
+    })
+}) */
+
+rangeInput.addEventListener('mouseup', function() {
+    shake();
+    createDivs(rangeInput.value);
+    size.textContent = rangeInput.value + " x " + rangeInput.value;
+    console.log(rangeInput.value);
+}); 
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        if(button.id == "rainbow"){
+            shake();
+           
+        }
+        else if(button.textContent == "Black"){
+            divList.forEach((div) => {
+                div.addEventListener('mouseenter', (e) => {
+                    console.log(div.style.backgroundColor);
+                    if(div.style.backgroundColor === ""){
+                    div.style.backgroundColor = 'rgb(0, 0, 0)';
+                    }
+                })
+            })
         }
     })
 })
