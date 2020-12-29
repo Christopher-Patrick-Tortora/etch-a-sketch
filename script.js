@@ -82,11 +82,12 @@ const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
-        if(button.id == "rainbow"){
+        if(button.id == "Shake"){
             shake();
+            createDivs(rangeInput.value);
            
         }
-        else if(button.textContent == "Black"){
+        /*else if(button.textContent == "Black"){
             divList.forEach((div) => {
                 div.addEventListener('mouseenter', (e) => {
                     console.log(div.style.backgroundColor);
@@ -95,7 +96,7 @@ buttons.forEach((button) => {
                     }
                 })
             })
-        }
+        }*/
     })
 })
 
