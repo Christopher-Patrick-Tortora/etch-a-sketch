@@ -6,32 +6,45 @@ header{
     color: gold;
     width: 960px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 150px;
     text-align: center;
     font-family: "Brush Script MT", cursive;
     font-size: 100px;  
 }
 
 body{
-    width: 960px;
+    
     margin: auto; 
 }
 p{
     margin-top: -20px;
     font-size: 20px;
 }
+form{
+    width: 960px;
+    margin: auto;
+}
+
+footer{
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+}
 
 .mySlider{
     width: 960px;
+    
     
 }
 
 
 .container{
+    background-color: white;
     border-style: solid;
     border-color: black;
     width: 960px;
     height: 720px;
+    margin: auto;
 }
 
 .box{
@@ -43,3 +56,25 @@ p{
 .nextRowBox{
     clear: both;; 
 }
+
+.dot{
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  #rightDot{
+    position: absolute;
+    right: 0%;
+      
+  }
+
+  #buttons{
+    position: absolute;
+    left: 50%;
+    margin-top: 8px;
+    transform: translate(-50%, -50%);
+  }
+      
