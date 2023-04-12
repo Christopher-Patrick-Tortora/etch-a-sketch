@@ -83,21 +83,21 @@ const EtchASketch = () => {
                 const colorContainer = document.querySelector(('.container__color'))
                 const colorSelected = colorContainer.querySelector('.button__pushed')
 
-                if (!button.classList.contains('button__pushed')) {
-                    const clickedButtonContainer = button.parentElement.parentElement;
-                    const clickedSettingContainer = clickedButtonContainer.parentElement
-                    const prevPushedButton = clickedButtonContainer.querySelector('.button__pushed')
+                const clickedButtonContainer = button.parentElement.parentElement;
+                const clickedSettingContainer = clickedButtonContainer.parentElement
+                const prevPushedButton = clickedButtonContainer.querySelector('.button__pushed')
 
+                //variables depend on which setting is clicked
+                const size = clickedSettingContainer.classList.contains('container__area') ? 
+                button.id : areaSelected.id
+                const color = clickedSettingContainer.classList.contains('container__color') ? 
+                button.id : colorSelected.id
+
+                if (!button.classList.contains('button__pushed')) {
                     //swaps pushed buttons
                     prevPushedButton.classList.remove('button__pushed')
                     button.classList.add('button__pushed')
 
-                    //variables depend on which setting is clicked
-                    const size = clickedSettingContainer.classList.contains('container__area') ? 
-                    button.id : areaSelected.id
-                    const color = clickedSettingContainer.classList.contains('container__color') ? 
-                    button.id : colorSelected.id
-            
                     removeDivs()
                     createDivs(size)
                     selectColor(color)
@@ -111,10 +111,9 @@ const EtchASketch = () => {
         //divs above 62 create instability therefore keep at 62 but say 64 because of style
         createDivs(62)
         drawListener(colorClassic)
-        //areaListener()
-        //colorListener()
-        shakeListener()
         settingsListener()
+        shakeListener()
+        
     }
 
     return { initialize }
