@@ -6,6 +6,7 @@ const EtchASketch = () => {
         const screen = document.querySelector('main')
         for(let i = 0; i < area; i++){
             const div = document.createElement('div');
+            div.id = i + 1
             div.style.width = `${dimension}%` 
             div.style.height = `${dimension}%` 
             div.classList.add('pixel')

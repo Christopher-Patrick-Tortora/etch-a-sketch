@@ -2,5 +2,5 @@ import { EtchASketch } from "./EtchASketch.mjs";
 
 const etchASketch = EtchASketch();
 
-etchASketch.createDivs(32)
+etchASketch.createDivs(64)
 etchASketch.drawListener()
