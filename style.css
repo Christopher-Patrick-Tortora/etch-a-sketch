@@ -93,9 +93,15 @@ button {
     box-shadow: 1px 0px 1px 1px black, 1px 0px 1px 1px black;
 }
 
-button:active {
-    transform: scale(0.9);
+.button__pushed {
+    filter: brightness(0.9);
 }
+
+button:not(.button__pushed):hover {
+    filter: brightness(1.1);
+}
+
+
 
 .dial {
     width: 90px;
