@@ -18,7 +18,7 @@ header {
     color: rgb(227, 182, 84);
 }
 
-header > h1 {
+header>h1 {
     word-spacing: -16px;
 }
 
@@ -38,15 +38,22 @@ nav {
     background-color: rgb(235, 15, 16);
     border-radius: 10px;
     box-shadow: 4px 0px 4px 4px rgb(235, 15, 16), -4px 0px 4px 4px rgb(235, 15, 16)
-
 }
 
 main {
+    display: flex;
+    flex-wrap: wrap;
     width: 624px;
     height: 432px;
-    background-color: rgb(221, 221, 220);
+    background-color: black;
     border-radius: 15px;
     box-shadow: 1px 0px 1px 1px black, -1px 0px 1px 1px black
+}
+
+.pixel {
+    flex: 1 1 auto;
+    border: 1px solid lightgray;
+    background-color: rgb(221, 221, 220);
 }
 
 nav {
@@ -55,7 +62,6 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .dial {
@@ -64,7 +70,6 @@ nav {
     background-color: white;
     border-radius: 50%;
     box-shadow: 4px 0px 4px 4px white, 4px 0px 4px 4px white;
-
 }
 
 footer {
