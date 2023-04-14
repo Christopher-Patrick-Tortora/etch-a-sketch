@@ -1,5 +1,23 @@
 const EtchASketch = () => {
 
+    const roundScreen = (size, screen) => {
+        const div1 = document.getElementById('1')
+        div1.style.borderRadius = '15px 0px 0px 0px'
+
+        const div2 = document.getElementById(`${size}`)
+        div2.style.borderRadius = '0px 15px 0px 0px'
+
+        const div3 = document.getElementById(`${(size * (size - 1) + 1)}`)
+        div3.style.borderRadius = '0px 0px 0px 15px'
+
+        const div4 = document.getElementById(`${size * size}`)
+        div4.style.borderRadius = '0px 0px 15px 0px'
+
+        if (size === 16) screen.style.borderRadius = '15px'
+        else if (size === 32) screen.style.borderRadius = '14px'
+        else if (size === 62) screen.style.borderRadius = '7px'
+    }
+
     const createDivs = (size) => {
         const area = size ** 2;
         const dimension = (1 / Math.sqrt(area)) * 100
@@ -12,7 +30,7 @@ const EtchASketch = () => {
             div.classList.add('pixel')
             screen.append(div)
         }
-
+        roundScreen(size, screen)
     }
 
     const removeDivs = () => {
@@ -49,16 +67,16 @@ const EtchASketch = () => {
         else if (color === 'random') drawListener(colorRandom)
     }
 
-    const shakeListener = () => {
-        const shakeButton = document.querySelector('.button__shake')
+    const eraseListener = () => {
+        const eraseButton = document.querySelector('.button__erase')
         const etchASketch = document.querySelector('.etch-a-sketch')
-        shakeButton.addEventListener('click', () => {
-            etchASketch.classList.add('shake')
-            shakeButton.classList.add('button__pushed')
+        eraseButton.addEventListener('click', () => {
+            etchASketch.classList.add('erase')
+            eraseButton.classList.add('button__pushed')
             //time should be equal to animation length
             setTimeout(() => {
-                etchASketch.classList.toggle('shake')
-                shakeButton.classList.toggle('button__pushed')
+                etchASketch.classList.toggle('erase')
+                eraseButton.classList.toggle('button__pushed')
             }, 1000)
         })
     }
@@ -87,24 +105,39 @@ const EtchASketch = () => {
                 const clickedSettingContainer = clickedButtonContainer.parentElement
                 const prevPushedButton = clickedButtonContainer.querySelector('.button__pushed')
 
-                //variables depend on which setting is clicked
-                const size = clickedSettingContainer.classList.contains('container__area') ? 
-                button.id : areaSelected.id
-                const color = clickedSettingContainer.classList.contains('container__color') ? 
-                button.id : colorSelected.id
+                const eraseButton = document.querySelector('.button__erase')
+                const etchASketch = document.querySelector('.etch-a-sketch')
 
-                if (!button.classList.contains('button__pushed')) {
+                //variables depend on which setting is clicked
+                const size = clickedSettingContainer.classList.contains('container__area') ?
+                    button.id : areaSelected.id
+                const color = clickedSettingContainer.classList.contains('container__color') ?
+                    button.id : colorSelected.id
+                if (!button.classList.contains('button__pushed') &&
+                    !button.classList.contains('button__erase')) {
                     //swaps pushed buttons
                     prevPushedButton.classList.remove('button__pushed')
                     button.classList.add('button__pushed')
 
                     removeDivs()
-                    createDivs(size)
+                    createDivs(Number(size))
                     selectColor(color)
+                }
+                else if (button.classList.contains('button__erase')) {
+                    etchASketch.classList.add('erase')
+                    eraseButton.classList.add('button__pushed')
+                    //time should be equal to animation length
+                    setTimeout(() => {
+                        etchASketch.classList.toggle('erase')
+                        eraseButton.classList.toggle('button__pushed')
+
+                        removeDivs()
+                        createDivs(Number(size))
+                        selectColor(color)
+                    }, 1000)
                 }
             })
         })
-
     }
 
     const initialize = () => {
@@ -112,8 +145,7 @@ const EtchASketch = () => {
         createDivs(62)
         drawListener(colorClassic)
         settingsListener()
-        shakeListener()
-        
+        //eraseListener()
     }
 
     return { initialize }
