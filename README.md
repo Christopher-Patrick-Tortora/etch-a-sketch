@@ -16,7 +16,7 @@ Skills Practiced:
         eventlisteners
 
 
-Plans
+Plans:
     Add Features
         mobile
         add erase animation
