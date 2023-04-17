@@ -67,20 +67,6 @@ const EtchASketch = () => {
         else if (color === 'random') drawListener(colorRandom)
     }
 
-    const eraseListener = () => {
-        const eraseButton = document.querySelector('.button__erase')
-        const etchASketch = document.querySelector('.etch-a-sketch')
-        eraseButton.addEventListener('click', () => {
-            etchASketch.classList.add('erase')
-            eraseButton.classList.add('button__pushed')
-            //time should be equal to animation length
-            setTimeout(() => {
-                etchASketch.classList.toggle('erase')
-                eraseButton.classList.toggle('button__pushed')
-            }, 1000)
-        })
-    }
-
     const drawListener = (color) => {
         const pixels = document.querySelectorAll('.pixel')
         pixels.forEach(pixel => {
